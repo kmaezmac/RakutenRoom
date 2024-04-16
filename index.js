@@ -8,7 +8,7 @@ async function test(){
     const browser = await puppeteer.launch({ headless: "new", defaultViewport:{
         width:800,height:1600
     },
-    executablePath:"/opt/render/.cache/puppeteer"
+    executablePath:"/usr/bin/google-chrome-stable"
   });
     const page = await browser.newPage();
     // await page.setUserAgent(
