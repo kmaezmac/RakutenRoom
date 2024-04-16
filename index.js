@@ -7,7 +7,9 @@ const password = process.env.RAKUTEN_PASSWORD;
 async function test(){
     const browser = await puppeteer.launch({ headless: "new", defaultViewport:{
         width:800,height:1600
-    }});
+    },
+    executablePath:"/opt/render/.cache/puppeteer"
+  });
     const page = await browser.newPage();
     // await page.setUserAgent(
     //   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
