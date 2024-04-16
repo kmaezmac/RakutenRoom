@@ -1,14 +1,29 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
+require('dotenv').config();
 
 const userId = process.env.RAKUTEN_USER_ID
 const password = process.env.RAKUTEN_PASSWORD;
 
 async function test(){
-    const browser = await puppeteer.launch({ headless: "new", defaultViewport:{
-        width:800,height:1600
-    },
-    executablePath:"/usr/bin/chromium-browser"
+  //   const browser = await puppeteer.launch({ headless: "new", defaultViewport:{
+  //       width:800,height:1600
+  //   },
+  //   executablePath:"/usr/bin/chromium-browser"
+  // });
+
+  const browser = await puppeteer.launch({
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    headless: "new",
+    executablePath:
+      // process.env.NODE_ENV === "production" ?
+        process.env.PUPPETEER_EXECUTABLE_PATH
+        // : puppeteer.executablePath(),
   });
     const page = await browser.newPage();
     // await page.setUserAgent(
