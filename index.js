@@ -25,7 +25,7 @@ async function test(){
     await page.waitForSelector("#loginInner_p", { visible: true });
     await page.type("#loginInner_p", password);
     await page.click('input[value="ログイン"]');
-    
+    console.log("いいいい");
     // ログイン後のページ遷移を待つ
     await page.waitForSelector("#collect-content", {
       visible: true,
@@ -48,7 +48,7 @@ async function test(){
     const buttonToClick = await page.click('xpath=//*[@id="scroller"]/div[4]/div[6]/div[1]/button',{
         visible: true,
       });
-    
+    console.log("ああああ");
     // if (buttonToClick.length > 0) {
     //   // @ts-ignore
     //   console.log("あああ")
