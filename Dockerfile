@@ -2,7 +2,11 @@ FROM ghcr.io/puppeteer/puppeteer:19.7.2
 
 USER root
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+
+RUN curl https://dl.google.com/linux/linux_signing_key.pub |  apt-key add - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+        # sudo apt update
+        # sudo apt install google-chrome-stable
 
 RUN apt-get update && \
     apt-get install -y xvfb
