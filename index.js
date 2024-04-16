@@ -60,6 +60,8 @@ async function test(){
     await browser.close();
 }
 
+const app = express();
+
 app.get("/", (req, res) => {
     try {
         test()
@@ -71,6 +73,6 @@ app.get("/", (req, res) => {
     res.send('get');
 });
 
-const app = express();
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
