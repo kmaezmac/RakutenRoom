@@ -2,7 +2,7 @@ FROM ghcr.io/puppeteer/puppeteer:19.7.2
 
 USER root
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E88979FB9B30ACF2
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 
 RUN apt-get update && \
     apt-get install -y xvfb
