@@ -4,7 +4,7 @@ USER root
 
 # RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 
-RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN $ apt install gnupg && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
 
 
 
