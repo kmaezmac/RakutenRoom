@@ -80,13 +80,14 @@ async function post(itemCode, description, itemName, catchcopy) {
     // );
 
     const url = `https://room.rakuten.co.jp/mix?itemcode=${itemCode}&scid=we_room_upc60`;
-
+    console.log("ああああ");
     console.log(url);
 
     // await page.goto(url, {waitUntil: 'networkidle0'});
     await page.goto(url);
     const userId = process.env.RAKUTEN_USER_ID
     const password = process.env.RAKUTEN_PASSWORD;
+    console.log("いいいい");
 
     // ログイン処理
     const xpathId = "xpath=/html/body/div[2]/div/div/div[1]/div/form/div/table/tbody/tr[1]/td[2]/input";
@@ -98,10 +99,12 @@ async function post(itemCode, description, itemName, catchcopy) {
     await page.focus(xpathPassword);
     await page.type(xpathPassword, password);
     await page.click("xpath=/html/body/div[2]/div/div/div[1]/div/form/div/p[1]/input");
+    console.log("うううう");
     // ログイン後のページ遷移を待つ
     await page.waitForSelector("#collect-content", {
       visible: true,
     });
+    console.log("ええええ");
 
     // コレ！済みの場合は、処理を終了
     let modalElement = null;
@@ -111,13 +114,14 @@ async function post(itemCode, description, itemName, catchcopy) {
         timeout: 500,
       });
       modalElement = await page.$(".modal-dialog-container");
+      console.log("おおおお");
     } catch (error) { }
     if (modalElement) {
       console.log("「すでにコレしている商品です」のため処理を終了");
       await browser.close();
       return;
     }
-
+    console.log("かかかか");
     var descriptionCut = itemName + catchcopy + description.substring(0, 200) + " #あったら便利 #欲しいものリスト #ランキング #人気 #楽天市場";
     console.log(descriptionCut);
     //　投稿処理
@@ -128,6 +132,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     await page.type("#collect-content", descriptionCut, { delay: 100 });
 
     await page.waitForSelector("button", { visible: true });
+    console.log("きききき");
     await page.click('xpath=//*[@id="scroller"]/div[4]/div[6]/div[1]/button', {
       visible: true,
     });
