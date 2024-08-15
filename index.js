@@ -62,9 +62,9 @@ async function post(itemCode, description, itemName, catchcopy) {
   try {
     const browser = await puppeteer.launch({
       headless: true, 
-      // defaultViewport: {
-      //   width: 800, height: 1600
-      // },
+      defaultViewport: {
+        width: 800, height: 1600
+      },
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -106,7 +106,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     await page.click("xpath=/html/body/div[2]/div/div/div[1]/div/form/div/p[1]/input");
     console.log("うううう");
     // ログイン後のページ遷移を待つ
-    await page.waitForSelector("#collect-content", {
+    await page.waitForSelector("xpath=/html/body/div[2]/div[2]/div[2]/div/div/form/div[2]/div[4]/div[3]/textarea", {
 
       visible: true,
     });
