@@ -104,7 +104,8 @@ async function post(itemCode, description, itemName, catchcopy) {
     await page.click("xpath=/html/body/div[2]/div/div/div[1]/div/form/div/p[1]/input");
     console.log("うううう");
     // ログイン後のページ遷移を待つ
-    await page.waitForSelector("xpath=/html/body/div[2]/div[2]/div[2]/div/div/form/div[2]/div[4]/div[3]/textarea", {
+    await page.waitForSelector("#collect-content", {
+
       visible: true,
     });
     console.log("ええええ");
@@ -128,11 +129,11 @@ async function post(itemCode, description, itemName, catchcopy) {
     var descriptionCut = itemName + catchcopy + description.substring(0, 200) + " #あったら便利 #欲しいものリスト #ランキング #人気 #楽天市場";
     console.log(descriptionCut);
     //　投稿処理
-    await page.waitForSelector("xpath=/html/body/div[2]/div[2]/div[2]/div/div/form/div[2]/div[4]/div[3]/textarea", {
+    await page.waitForSelector("#collect-content", {
       visible: true,
     });
-    await page.click("xpath=/html/body/div[2]/div[2]/div[2]/div/div/form/div[2]/div[4]/div[3]/textarea");
-    await page.type("xpath=/html/body/div[2]/div[2]/div[2]/div/div/form/div[2]/div[4]/div[3]/textarea", descriptionCut, { delay: 100 });
+    await page.click("#collect-content");
+    await page.type("#collect-content", descriptionCut, { delay: 100 });
 
     await page.waitForSelector("button", { visible: true });
     console.log("きききき");
