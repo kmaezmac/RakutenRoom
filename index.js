@@ -84,6 +84,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     console.log(url);
 
     // await page.goto(url, {waitUntil: 'networkidle0'});
+    await page.setDefaultNavigationTimeout(30000); 
     await page.goto(url);
     const userId = process.env.RAKUTEN_USER_ID
     const password = process.env.RAKUTEN_PASSWORD;
@@ -111,7 +112,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     try {
       await page.waitForSelector(".modal-dialog-container", {
         visible: true,
-        timeout: 500,
+        // timeout: 500,
       });
       modalElement = await page.$(".modal-dialog-container");
       console.log("おおおお");
