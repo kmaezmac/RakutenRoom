@@ -61,9 +61,10 @@ try {
 async function post(itemCode, description, itemName, catchcopy) {
   try {
     const browser = await puppeteer.launch({
-      headless: "true", defaultViewport: {
-        width: 800, height: 1600
-      },
+      headless: true, 
+      // defaultViewport: {
+      //   width: 800, height: 1600
+      // },
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -79,6 +80,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     // await page.setUserAgent(
     //   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
     // );
+    
     // await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")
 
     const url = `https://room.rakuten.co.jp/mix?itemcode=${itemCode}&scid=we_room_upc60`;
@@ -87,7 +89,7 @@ async function post(itemCode, description, itemName, catchcopy) {
 
     // await page.goto(url, {waitUntil: 'networkidle0'});
     // await page.setDefaultNavigationTimeout(30000); ˚˚
-    await page.goto(url, {timeout: 40000, waitUntil: 'networkidle0'});
+    await page.goto(url, {timeout: 40000, waitUntil: 'domcontentloaded'});
     const userId = process.env.RAKUTEN_USER_ID
     const password = process.env.RAKUTEN_PASSWORD;
     console.log("いいいい");
