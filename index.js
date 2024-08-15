@@ -24,6 +24,7 @@ async function test(age) {
         console.log(description);
         await post(itemCode, description, itemName, catchcopy);
         console.log("完了");
+        break;
       }
 
     }
@@ -60,9 +61,9 @@ try {
 async function post(itemCode, description, itemName, catchcopy) {
   try {
     const browser = await puppeteer.launch({
-      // headless: "new", defaultViewport: {
-      //   width: 800, height: 1600
-      // }
+      headless: "new", defaultViewport: {
+        width: 800, height: 1600
+      },
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
