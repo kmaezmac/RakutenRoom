@@ -97,7 +97,7 @@ async function post(itemCode, description, itemName, catchcopy) {
     await page.waitForSelector(xpathPassword, {visible: true});
     await page.focus(xpathPassword);
     await page.type(xpathPassword, password);
-    await page.click('input[value="ログイン"]');
+    await page.click("xpath=/html/body/div[2]/div/div/div[1]/div/form/div/p[1]/input");
     // ログイン後のページ遷移を待つ
     await page.waitForSelector("#collect-content", {
       visible: true,
