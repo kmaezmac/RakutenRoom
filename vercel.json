@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/scraper.js": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 10
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/scraper",
+      "schedule": "0 */2 * * *"
+    }
+  ]
+}
