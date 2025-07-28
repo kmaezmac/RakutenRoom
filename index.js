@@ -123,13 +123,13 @@ async function post(itemCode, description, itemName, catchcopy, userId, password
     await sleep(1000)
     await page.waitForSelector(xpathId, {visible: true});
     await page.focus(xpathId);
-    await page.type(xpathId, userId);
+    await page.type(xpathId, userId, { delay: 50 });
     await page.click('xpath=/html/body/form/div/div[3]/div/div/div/div[2]/div/div/div[2]/div[4]');
     await sleep(5000)
     const xpathPassword = "xpath=/html/body/form/div/div[3]/div/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/label/div/input"
     await page.waitForSelector(xpathPassword, {timeout: 5000});
     await page.focus(xpathPassword);
-    await page.type(xpathPassword, password);
+    await page.type(xpathPassword, password, { delay: 50 });
     // await page.click('input[value="ログイン"]');
     await page.click("xpath=/html/body/form/div/div[3]/div/div/div/div[2]/div/div/div[2]/div[5]");
     console.log("うううう");
@@ -163,7 +163,11 @@ async function post(itemCode, description, itemName, catchcopy, userId, password
       visible: true,
     });
     await page.click("#collect-content");
-    await page.type("#collect-content", descriptionCut, { delay: 100 });
+    await page.evaluate((text) => {
+      const element = document.querySelector("#collect-content");
+      element.value = text;
+      element.dispatchEvent(new Event('input', { bubbles: true }));
+    }, descriptionCut);
 
     await page.waitForSelector("button", { visible: true });
     console.log("きききき");
